@@ -109,3 +109,23 @@ Então caso seja necessário aproveitar um antigo, opte pelo start;​
 * Se não colocamos, **recebemos um nome aleatório**, o que pode ser um problema para uma aplicação profissional;​
 
 * A flag run é inserida junto do **comando run**;​
+
+# Verificando os logs #
+
+* Podemos **verificar o que aconteceu em um container** com o comando logs;​
+
+* Utilizamos da seguinte maneira: **docker logs < id>​**
+
+* As últimas ações realizadas no container, serão **exibidas no terminal**;
+
+# Removendo containers #
+
+* Podemos **remover um container da máquina** que estamos executando o Docker;​
+
+* O comando é **docker -rm < id >**;​
+
+* Se o container estiver rodando ainda, podemos utilizar a **flag -f** (force);​
+
+* O container removido não é mais listado em docker ps -a;​
+
+​
