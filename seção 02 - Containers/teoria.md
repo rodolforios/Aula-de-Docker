@@ -35,3 +35,13 @@
 * Utilizando a **flag -a**, temos também todos os containers já executados na máquina;​
 
 * Este comando é útil para **entender o que está sendo executado e acontece** no nosso ambiente;
+
+# Executar container com interação​ #
+
+* Podemos rodar um container e deixá-lo **executando no terminal**;​
+
+* Vamos utilizar a **flag -it**;​
+
+* Desta maneira **podemos executar comandos disponíveis no container** que estamos utilizando o comando run;​
+
+* Podemos utilizar a imagem do ubuntu para isso!
