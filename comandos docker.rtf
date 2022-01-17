@@ -1,0 +1,134 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.22000}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang22\par
+Comandos b\'e1sicos\par
+Para utiliza\'e7\'e3o do Docker \'e9 necess\'e1rio conhecer alguns comandos e entender de forma clara e direta para que servem, assim como alguns exemplos de uso.\par
+\par
+N\'e3o abordaremos os comandos de cria\'e7\'e3o de imagem e tratamento de problemas (troubleshooting) no Docker, pois t\'eam cap\'edtulos espec\'edficos para o detalhamento.\par
+\par
+Executando um container\par
+Para iniciar um container \'e9 necess\'e1rio saber a partir de qual imagem ser\'e1 executado. Para listar as imagens que seu Docker host tem localmente, execute o comando abaixo:\par
+\par
+\b\fs28 docker image list\b0\fs22\par
+As imagens retornadas est\'e3o presentes no seu Docker host e n\'e3o demandam qualquer download da nuvem p\'fablica do Docker, a menos que deseje atualiz\'e1-la. Para atualizar a imagem basta executar o comando abaixo:\par
+\par
+\b\fs28 docker image pull python\b0\fs22\par
+Usamos a imagem chamada python como exemplo, mas caso deseje atualizar qualquer outra imagem, basta colocar seu nome no lugar de python.\par
+\par
+Caso deseje inspecionar a imagem que acabou de atualizar, basta usar o comando abaixo:\par
+\par
+\b\fs28 docker image inspect python\b0\fs22\par
+O comando \b inspect\b0  \'e9 respons\'e1vel por informar todos os dados referentes \'e0 imagem.\par
+\par
+Agora que temos a imagem atualizada e inspecionada, podemos iniciar o container. Mas antes de simplesmente copiar e colar o comando, vamos entender como ele realmente funciona.\par
+\par
+docker container run <par\'e2metros> <imagem> <CMD> <argumentos>\par
+Os par\'e2metros mais utilizados na execu\'e7\'e3o do container s\'e3o:\par
+\par
+
+\pard\sa200\sl240\slmult1 Par\'e2metro\tab Explica\'e7\'e3o\par
+-d\tab Execu\'e7\'e3o do container em background\par
+-i\tab Modo interativo. Mant\'e9m o STDIN aberto mesmo sem console anexado\par
+-t\tab Aloca uma pseudo TTY\par
+--rm\tab Automaticamente remove o container ap\'f3s finaliza\'e7\'e3o (N\'e3o funciona com -d)\par
+--name\tab Nomear o container\par
+-v\tab Mapeamento de volume\par
+-p\tab Mapeamento de porta\par
+-m\tab Limitar o uso de mem\'f3ria RAM\par
+-c\tab Balancear o uso de CPU\par
+\par
+Segue um exemplo simples no seguinte comando:\par
+\par
+docker container run -it --rm --name meu_python python bash\par
+De acordo com o comando acima, ser\'e1 iniciado um container com o nome meu_python, criado a partir da imagem python e o processo executado nesse container ser\'e1 o bash.\par
+\par
+Vale lembrar que, caso o CMD n\'e3o seja especificado no comando docker container run, \'e9 utilizado o valor padr\'e3o definido no Dockerfile da imagem utilizada. No nosso caso \'e9 python e seu comando padr\'e3o executa o bin\'e1rio python, ou seja, se n\'e3o fosse especificado o bash, no final do comando de exemplo acima, ao inv\'e9s de um shell bash do GNU/Linux, seria exibido um shell do python.\par
+\par
+\b\fs28 Mapeamento de volumes\b0\fs22\par
+Para realizar mapeamento de volume basta especificar qual origem do dado no host e onde deve ser montado dentro do container.\par
+\par
+docker container run -it --rm -v "<host>:<container>" python\par
+O uso de armazenamento \'e9 melhor explicado em cap\'edtulos futuros, por isso n\'e3o detalharemos o uso desse par\'e2metro.\par
+\par
+\b\fs28 Mapeamento de portas\par
+\par
+\b0\fs22 Para realizar o mapeamento de portas basta saber qual porta ser\'e1 mapeada no host e qual deve receber essa conex\'e3o dentro do container.\par
+\par
+docker container run -it --rm -p "<host>:<container>" python\par
+\par
+Um exemplo com a porta 80 do host para uma porta 8080 dentro do container tem o seguinte comando:\par
+\par
+docker container run -it --rm -p 80:8080 python\par
+Com o comando acima temos a porta 80 acess\'edvel no Docker host que repassa todas as conex\'f5es para a porta 8080 dentro do container. Ou seja, n\'e3o \'e9 poss\'edvel acessar a porta 8080 no endere\'e7o IP do Docker host, pois essa porta est\'e1 acess\'edvel apenas dentro do container que \'e9 isolada a n\'edvel de rede, como j\'e1 dito anteriormente.\par
+\par
+\b\fs28 Gerenciamento dos recursos\b0\fs22\par
+\par
+Na inicializa\'e7\'e3o dos containers \'e9 poss\'edvel especificar alguns limites de utiliza\'e7\'e3o dos recursos. Trataremos aqui apenas de mem\'f3ria RAM e CPU, os mais utilizados.\par
+\par
+Para limitar o uso de mem\'f3ria RAM que pode ser utilizada por esse container, basta executar o comando abaixo:\par
+\par
+docker container run -it --rm -m 512M python\par
+Com o comando acima estamos limitando esse container a utilizar somente 512 MB de RAM.\par
+\par
+Para balancear o uso da CPU pelos containers, utilizamos especifica\'e7\'e3o de pesos para cada container, quanto menor o peso, menor sua prioridade no uso. Os pesos podem oscilar de 1 a 1024.\par
+\par
+Caso n\'e3o seja especificado o peso do container, ele usar\'e1 o maior peso poss\'edvel, nesse caso 1024.\par
+\par
+Usaremos como exemplo o peso 512:\par
+\par
+docker container run -it --rm -c 512 python\par
+\par
+Para entendimento, vamos imaginar que tr\'eas containers foram colocados em execu\'e7\'e3o. Um deles tem o peso padr\'e3o 1024 e dois t\'eam o peso 512. Caso os tr\'eas processos demandem toda CPU o tempo de uso deles ser\'e1 dividido da seguinte maneira:\par
+\par
+
+\pard{\pntext\f1\'B7\tab}{\*\pn\pnlvlblt\pnf1\pnindent0{\pntxtb\'B7}}\fi-360\li720\sa200\sl240\slmult1 O processo com peso 1024 usar\'e1 50% do tempo de processamento\par
+{\pntext\f1\'B7\tab}Os dois processos com peso 512 usar\'e3o 25% do tempo de processamento, cada.\par
+
+\pard\sa200\sl240\slmult1\par
+\b\fs28 Verificando a lista de containers\b0\fs22\par
+Para visualizar a lista de containers de um determinado Docker host utilizamos o comando docker ps.\par
+\par
+Esse comando \'e9 respons\'e1vel por mostrar todos os containers, mesmo aqueles n\'e3o mais em execu\'e7\'e3o.\par
+\par
+docker container list <par\'e2metros>\par
+Os par\'e2metros mais utilizados na execu\'e7\'e3o do container s\'e3o:\par
+\par
+Par\'e2metro\tab Explica\'e7\'e3o\par
+-a\tab Lista todos os containers, inclusive os desligados\par
+-l\tab Lista os \'faltimos containers, inclusive os desligados\par
+-n\tab Lista os \'faltimos N containers, inclusive os desligados\par
+-q\tab Lista apenas os ids dos containers, \'f3timo para utiliza\'e7\'e3o em scripts\par
+\par
+\par
+\b\fs28 Gerenciamento de containers\par
+\b0\fs22\par
+Uma vez iniciado o container a partir de uma imagem \'e9 poss\'edvel gerenciar a utiliza\'e7\'e3o com novos comandos.\par
+\par
+Caso deseje desligar o container basta utilizar o comando docker stop. Ele recebe como argumento o ID ou nome do container. Ambos os dados podem ser obtidos com o docker ps, explicado no t\'f3pico anterior.\par
+\par
+Um exemplo de uso:\par
+\par
+docker container stop meu_python\par
+No comando acima, caso houvesse um container chamado meu_python em execu\'e7\'e3o, ele receberia um sinal SIGTERM e, caso n\'e3o fosse desligado, receberia um SIGKILL depois de 10 segundos.\par
+\par
+Caso deseje reiniciar o container que foi desligado e n\'e3o iniciar um novo, basta executar o comando docker start:\par
+\par
+docker container start meu_python\par
+\par
+OBS: "Vale ressaltar que a ideia dos containers \'e9 a de serem descart\'e1veis. Caso voc\'ea use o mesmo container por muito tempo sem descart\'e1-lo, provavelmente est\'e1 usando o Docker incorretamente. O Docker n\'e3o \'e9 uma m\'e1quina, \'e9 um processo em execu\'e7\'e3o. E, como todo processo, deve ser descartado para que outro possa tomar seu lugar na reinicializa\'e7\'e3o do mesmo."\par
+\par
+\par
+docker logs nomeDaImagem: Mostra todo o hist\'f3rico de logs da imagem.(\'d3timo para debug)\par
+\par
+tcp inbound\par
+docker build -t rizzo:1.1 . para montar\par
+docker run  -p 30278:30278 rizzo:1.1 \par
+docker kill $(docker ps -aq) para encerrar todas imagens\par
+\par
+validando as rotas\par
+\par
+
+\pard\sa200\sl276\slmult1 como fazer testes no node   \par
+\par
+}
+ 
