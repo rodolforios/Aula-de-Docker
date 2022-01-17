@@ -1,0 +1,3 @@
+[submodule "curso_docker"]
+	path = curso_docker
+	url = https://github.com/matheusbattisti/curso_docker.git
