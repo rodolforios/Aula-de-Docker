@@ -45,3 +45,26 @@
 * Desta maneira **podemos executar comandos disponíveis no container** que estamos utilizando o comando run;​
 
 * Podemos utilizar a imagem do ubuntu para isso!
+
+# Container X VM (Virtual Machine)​ #
+
+* **Container é uma aplicação que serve para um determinado fim**, não possui sistema operacional, seu tamanho é de alguns mbs;​
+
+* VM possui sistema operacional próprio, tamanho de gbs, **pode executar diversas funções ao mesmo** tempo;​
+
+* Containers acabam gastando menos recursos para serem executados, por causa do seu uso específico;​
+
+* VMs gastam mais recursos, porém podem exercer mais funções;​
+
+# Executar container em background​ #
+
+* Quando iniciamos um container que persiste, **ele fica ocupando o terminal**;​
+
+* Podemos executar um container em background, para não precisar ficar com diversas abas de terminal aberto, utilizamos a **flag -d** (detached);​
+
+* Verificamos **containers em background com docker ps** também;​
+
+* Podemos utilizar o nginx para este exemplo!​
+
+​
+​
