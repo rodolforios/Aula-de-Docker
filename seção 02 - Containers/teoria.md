@@ -66,5 +66,20 @@
 
 * Podemos utilizar o nginx para este exemplo!​
 
+# Expor portas #
+
+* Os **containers de docker não tem conexão com nada de fora deles**;​
+
+* Por isso precisamos expor portas, a **flag é a -p** e podemos fazer assim: -p 80:80;​
+
+* Desta maneira **o container estará acessível na porta 80**;​
+
+* Podemos testar este exemplo com o nginx!
 ​
-​
+# Parando containers #
+
+* Podemos parar um container com o comando **docker stop < id ou nome >**;​
+
+* Desta maneira estaremos liberando recursos que estão sendo gastos pelo mesmo;​
+
+* Podemos verificar os containers rodando com o comando **docker ps**;
