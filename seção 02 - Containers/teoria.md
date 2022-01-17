@@ -83,3 +83,29 @@
 * Desta maneira estaremos liberando recursos que estão sendo gastos pelo mesmo;​
 
 * Podemos verificar os containers rodando com o comando **docker ps**;
+
+# Hack para execução de comandos #
+
+* Podemos utilizar qualquer comando que necessite um id de um container ou imagem com **apenas seus 3 primeiros dígitos**;​
+
+* docker stop a2b;​
+
+* **O Docker é inteligente o suficiente** para entender essa abreviação;​
+
+* E ele tenta ao máximo **criar ids únicos**;​
+
+# Iniciando container #
+
+Aprendemos já a parar um container com o stop, para voltar a rodar um container podemos usar o comando **docker start < id >**;​
+
+Lembre-se que **o run sempre cria um novo container**;​
+
+Então caso seja necessário aproveitar um antigo, opte pelo start;​
+
+# Definindo nome do container #
+
+* Podemos definir um nome do container com a flag **--name**;​
+
+* Se não colocamos, **recebemos um nome aleatório**, o que pode ser um problema para uma aplicação profissional;​
+
+* A flag run é inserida junto do **comando run**;​
