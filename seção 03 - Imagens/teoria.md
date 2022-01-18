@@ -29,3 +29,21 @@
 * **EXPOSE**: porta da aplicação;​
 
 * **COPY**: quais arquivos precisam ser copiados;​
+
+# Executando uma imagem #
+
+* Para executar a imagem primeiramente **vamos precisar fazer o build**;​
+
+* O comando é **docker build < diretório da imagem>**;​
+
+* Para ver a lista de imagens digite **docker images**
+
+* Depois vamos utilizar o **docker run < imagem>** para executá-la;​
+
+# Alterando uma imagem #
+
+* Sempre que alterarmos o código de uma imagem **vamos precisar fazer o build novamente**;​
+
+* Para o Docker é como se fosse **uma imagem completamente nova**;​
+
+* Após fazer o build vamos executá-la por o outro id único criada com o docker run;​
