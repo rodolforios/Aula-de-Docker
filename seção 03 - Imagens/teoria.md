@@ -47,15 +47,6 @@
 * Para o Docker é como se fosse **uma imagem completamente nova**;​
 
 * Após fazer o build vamos executá-la por o outro id único criada com o docker run;​
-# Camadas das imagens #
-
-* As imagens do Docker são divididas em camadas (layers);​
-
-* Cada instrução no Dockerfile representa uma layer;​
-
-* Quando algo é atualizado apenas as layers depois da linha atualizada são refeitas;​
-
-* O resto permanece em cache, tornando o build mais rápido;​
 
 # Camadas das imagens #
 
@@ -84,7 +75,10 @@
 
 * Para relembrar algo ou executar uma tarefa diferente com o mesmo;​
 
-* Ex: **docker run --help**;​
+* Ex:
+ ```
+ docker run --help;​
+ ```
 
 # Múltiplas aplicações, mesmo container #
 
@@ -180,3 +174,64 @@ docker run --rm -d -p 3000:3000 d6c061121c3f
 * Pode ser utilizado para copiar um arquivo de um diretório para um container;​
 
 * Ou de um container para um diretório determinado;
+
+Ex:
+```
+docker elated_lovelace:/app/app.js ./copia/
+```
+
+# Verificar informações de processamento #
+
+* Para verificar dados de execução de um container utilizamos: **docker top < container>​**
+
+* Desta maneira temos acesso a quando ele foi iniciado, id do processo, descrição do comando CMD;​
+
+Ex:
+```
+docker top elated_lovelace
+```
+# Verificar dados de um container #
+
+* Para verificar diversas informações como: **id, data de criação, imagem e muito mais**;​
+
+* Utilizamos o comando **docker inspect &lt;container&gt;**
+
+* Desta maneira conseguimos entender como o container está configurado;​
+
+Ex:
+```
+docker inspect elated_lovelace
+```
+# Verificar processamento #
+
+* Para verificar os processos que estão sendo executados em um container, utilizamos o comando: **docker stats**​
+
+* Desta maneira temos acesso ao andamento do processamento e memória gasta pelo mesmo;​
+
+Ex:
+```
+docker stats elated_lovelace
+```
+# Autenticação no Docker Hub #
+
+* Para concluir esta aula vamos precisar criar uma conta no: https://hub.docker.com​
+
+* Para autenticar-se pelo terminal vamos utilizar o comando **docker login**;​
+
+* E então inserir usuário e senha;​
+
+* Agora podemos **enviar nossas próprias imagens** para o HUB! =&rpar;
+
+# Logout do Docker Hub #
+
+* Para remover a conexão entre nossa máquina e o Docker Hub, vamos utilizar o comando **docker logout**;​
+
+* Agora não podemos mais enviar imagens, pois não estamos autenticados
+
+# Enviando imagem para o Docker Hub #
+
+* Para enviar uma imagem nossa ao Docker Hub utilizamos o comando **docker push &lt;imagem>**;​
+
+* Porém antes vamos precisar **criar o repositório** para a mesma no site do Hub;​
+
+* Também será necessário **estar autenticado**;​
