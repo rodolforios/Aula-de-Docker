@@ -102,3 +102,54 @@ E para mudar o volume basta usar o código:
 ```
 docker run -d -p 80:80 --name phpmessage_container -v volumeteste:/var/www/html/messages --rm phpmessages
 ``` 
+
+# Listando todos os volumes #
+
+* Com o comando: **docker volume ls** listamos todos todos os volumes;​
+
+* Desta maneira temos acesso aos **anonymous e os named volumes**;​
+
+* Interessante para saber quais volumes estão criados no nosso ambiente;​
+
+# Checar um volume #
+
+* Podemos verificar os detalhes de um volume em específico com o comando: **docker volume inspect nome**;​
+
+* Desta forma temos acesso ao **local em que o volume guarda dados**, nome, escopo e muito mais;​
+
+* O docker salva os dados dos volumes em algum diretório do nosso computador, desta forma podemos saber qual é;​
+
+Ex:
+```
+docker volume inspect volumeteste
+```
+# Remover um volume #
+
+* Podemos também remover um volume existente de forma fácil;​
+
+Vamos utilizar o comando **docker volume rm &lt;nome>​**
+
+Observe que **os dados serão removidos todos também**, tome cuidado com este comando;​
+Ex:
+
+```
+docker volume rm volumeteste
+```
+# Removendo volumes não utilizados #
+
+* Podemos **remover todos os volumes que não estão sendo utilizados** com apenas um comando;​
+
+* O comando é: **docker volume prune​**
+
+* Semelhante ao prune que remove imagens e containers, visto anteriormente;​
+
+# Volume apenas de leitura #
+
+* Podemos criar um volume que tem **apenas permissão de leitura**, isso é útil em algumas aplicações;​
+
+* Para realizar esta configuração devemos utilizar o comando: **docker run -v volume:/data:ro**​
+
+* Este **:ro** é a abreviação de read only;​
+
+
+
