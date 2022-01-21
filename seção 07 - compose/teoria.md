@@ -96,3 +96,27 @@ docker-compose up -d
 * Agora vamos inserir o nosso projeto da última seção no Compose;​
 
 * Para verificar na prática como fazer uma transferência de **Dockerfiles para Docker Compose**!​
+
+# Build no Compose #
+
+* Podemos gerar o **build durante o Compose** também;​
+
+* Isso vai **eliminar o processo de gerar o build da imagem** a cada atualização;​
+
+* Vamos ver na prática!​
+
+# Bind mount no Compose #
+
+* O volume de **Bind Mount garante atualização em tempo real dos arquivos do container**;​
+
+* Podemos configurar nosso projeto de Compose para utilizar esta funcionalidade também;​
+
+* Vamos ver na prática!​
+
+# Verificando o que tem no Compose #
+
+* Podemos fazer a verificação do compose com: **docker-compose ps**​
+
+* Receberemos um **resumo dos serviços que sobem** ao rodar o compose;​
+* Desta maneira podemos avaliar rapidamente o projeto;​
+
