@@ -183,4 +183,94 @@ kubectl config view​
 
 * Então o **Service é uma entidade separada dos Pods**, que expõe eles a uma rede;​
 
-​
+# Criando nosso Service #
+
+
+* Para criar um serviço e expor nossos Pods devemos utilizar o comando: **kubectl expose deployment &lt;NOME> --type=&lt;TIPO> --port=&lt;PORT>​**
+
+```
+```
+
+* Colocaremos o nome do **Deployment** já criado;​
+
+* O **tipo de Service**, há vários para utilizarmos, porém o **LoadBalancer** é o mais comum, onde todos os Pods são expostos;​
+
+* E uma **porta** para o serviço ser consumido;​
+```
+kubectl expose deployment flask-deployment --type=LoadBalancer --port=5000
+```
+
+# Gerando Ip de acesso #
+
+* Podemos acessar o nosso serviço com o comando:  **minikube service &lt;NOME>​**
+
+```
+minikube service flask-deployment
+```
+
+* Desta forma o **IP aparece no nosso terminal**;​
+
+* E também **uma aba no navegador é aberta** com o projeto;​
+
+* E pronto! Temos um projeto rodando pelo **Kubernetes**!​
+
+# Verificando os nosso serviços #
+
+* Podemos também obter detalhes dos **Services já criados**;​
+
+* O comando para verificar todos é: **kubectl get services**​
+
+* E podemos obter informações de um serviço em específico com: **kubectl describe services/&lt;NOME>**
+```
+kubectl get services
+```
+# Replicando nossa aplicação #
+
+* Vamos aprender agora a como utilizar outros Pods, **replicando assim a nossa aplicação**;​
+
+* O comando é: **kubectl scale deployment/&lt;NOME> --replicas=&lt;NUMERO>**​
+
+* Podemos agora verificar no **Dashboard** o aumento de Pods;​
+
+* E também com o comando de: **kubectl get pods​**
+
+```
+kubectl scale deployment/flask-deployment --replicas=5
+```
+# Checar número de réplicas #
+
+* Além do get pods e da Dashboard, temos mais um comando para **checar réplicas**;​
+
+* Que é o: **kubectl get rs**
+
+```
+kubectl get rs
+```
+
+* Desta maneira temos os **status das réplicas** dos projetos;​
+
+# Diminuindo a escala #
+
+* Podemos facilmente também **reduzir o número de Pods**;​
+
+* Esta técnica é chamada de **scale down**;​
+```
+kubectl scale deployment/flask-deployment --replicas=3
+```
+
+* O comando é o mesmo, porém colocamos menos réplicas e o Kubernetes faz o resto;​
+
+* Comando: **kubectl scale deployment/&lt;NOME> --replicas=&lt;NUMERO_MENOR>​**
+
+# Atualização de imagem​ #
+
+* Para atualizar a imagem vamos precisar do **nome do container**, isso é dado na Dashboard dentro do Pod;​
+
+* E também a nova imagem deve ser uma outra versão da atual, **precisamos subir uma nova tag no Hub**;​
+
+* Depois utilizamos o comando: **kubectl set image deployment/&lt;NOME> &lt;NOME_CONTAINER>=&lt;NOVA_IMAGEM>​**
+
+```
+kubectl set image deployment/flask-deployment flask-kub-projeto=rodolforios18/flask-kub-projeto2
+
+```
