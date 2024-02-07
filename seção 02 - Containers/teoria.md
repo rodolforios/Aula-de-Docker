@@ -72,6 +72,8 @@
 
 * Por isso precisamos expor portas, a **flag é a -p** e podemos fazer assim: -p 80:80;​
 
+* Lembrando que a porta que vai primeiro é a que eu quero expor e a segunda a que eu quero receber do container.
+
 * Desta maneira **o container estará acessível na porta 80**;​
 
 * Podemos testar este exemplo com o nginx!
@@ -105,6 +107,8 @@ Então caso seja necessário aproveitar um antigo, opte pelo start;​
 # Definindo nome do container #
 
 * Podemos definir um nome do container com a flag **--name**;​
+  
+* docker run -d -p 80:80 --name nginx_app nginx
 
 * Se não colocamos, **recebemos um nome aleatório**, o que pode ser um problema para uma aplicação profissional;​
 
@@ -122,9 +126,11 @@ Então caso seja necessário aproveitar um antigo, opte pelo start;​
 
 * Podemos **remover um container da máquina** que estamos executando o Docker;​
 
-* O comando é **docker -rm < id >**;​
+* O comando é **docker rm < id >**;​
 
 * Se o container estiver rodando ainda, podemos utilizar a **flag -f** (force);​
+ 
+* **docker rm < id > -f** 
 
 * O container removido não é mais listado em docker ps -a;​
 

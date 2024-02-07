@@ -115,7 +115,7 @@ docker build -t meunode_diferente:minhatag_diferente .
 
 # Comando start interativo #
 
-* A **flag -it** pode ser utilizada com o comando start também;​
+* A **flag -i** pode ser utilizada com o comando start também;​
 
 * Ou seja, não precisamos criar um novo container para utilizá-lo no terminal;​
 
@@ -124,7 +124,7 @@ docker build -t meunode_diferente:minhatag_diferente .
 ​
 Ex:
 ``` 
-docker start -i epic_vaughan
+docker start -it epic_vaughan
 ```
 
 # Removendo imagens #
@@ -235,3 +235,10 @@ docker stats elated_lovelace
 * Porém antes vamos precisar **criar o repositório** para a mesma no site do Hub;​
 
 * Também será necessário **estar autenticado**;​
+
+
+# Enviando atualização de imagem
+* Para enviar uma atualização **vamos primeiramente fazer o build**;
+* **Trocando a tag da imagem** para a versão atualizada;
+* **Depois vamos fazer um push** novamente para o repositório;
+* Assim todas as versões estarão disponíveis para serem utilizadas;
